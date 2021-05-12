@@ -10,7 +10,7 @@ services:
         SERVICE: ${SERVICE}
 #    restart: always
     volumes:
-      - ./app.jar:/app/app.jar
+      - ./target/*.jar:/app/app.jar
       - ./wschart-entrypoint.sh:/app/wschart-entrypoint.sh
     ports:
       - 8000:8000

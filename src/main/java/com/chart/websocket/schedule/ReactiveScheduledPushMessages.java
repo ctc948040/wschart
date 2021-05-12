@@ -25,9 +25,9 @@ public class ReactiveScheduledPushMessages implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Flux.interval(Duration.ofSeconds(4L))
-            .map((n) -> new OutputMessage(faker.backToTheFuture().character(), faker.backToTheFuture().quote(), 
-                                            new SimpleDateFormat("HH:mm").format(new Date())))
-            .subscribe(message -> simpMessagingTemplate.convertAndSend("/topic/pushmessages", message));
+//        Flux.interval(Duration.ofSeconds(4L))
+//            .map((n) -> new OutputMessage(faker.backToTheFuture().character(), faker.backToTheFuture().quote(), 
+//                                            new SimpleDateFormat("HH:mm").format(new Date())))
+//            .subscribe(message -> simpMessagingTemplate.convertAndSend("/topic/pushmessages", message));
     }
 }

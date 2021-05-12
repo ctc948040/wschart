@@ -25,12 +25,12 @@
 		<IncludeCallerData>${includeCallerData}</IncludeCallerData>
 	</appender> -->
 
-	<logger name="com.chart" level="info" additivity="false">
+	<logger name="com.chart" level="debug" additivity="false">
 		<!-- <appender-ref ref="SOCKET" /> -->
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<root level="info">
+	<root level="debug">
 		<!-- <appender-ref ref="SOCKET" /> -->	
 		<appender-ref ref="STDOUT" />
 	</root>

@@ -1,26 +1,21 @@
 package com.chart.redis.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-import com.chart.redis.queue.*;
+import com.chart.redis.queue.RedisMessageSubscriber;
 
 @Configuration
 public class RedisConfig {
 	
-	@Autowired
-	SimpMessagingTemplate simpMessagingTemplate;
+	//@Autowired
+	//SimpMessagingTemplate simpMessagingTemplate;
 	
 	@Bean
 	RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,RedisMessageSubscriber redisMessageSubscriber) {
