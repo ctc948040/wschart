@@ -1,7 +1,7 @@
 #.mvn/
-#.settings/
-#.classlpath
-#.project
+.settings/
+.classlpath
+.project
 target/
 pom.xml.tag
 pom.xml.releaseBackup
