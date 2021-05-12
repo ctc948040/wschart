@@ -1,0 +1,10 @@
+FROM openjdk:8-jdk-alpine
+ENV HOME=/app
+ARG PORT=80
+ENV PORT=$PORT
+ADD ./target/*.jar ${HOME}/app.jar
+ADD ./scripts/docker-entrypoint.sh ${HOME}/docker-entrypoint.sh
+WORKDIR ${HOME}
+EXPOSE ${PORT}/tcp
+EXPOSE 8000/tcp
+ENTRYPOINT ./docker-entrypoint.sh

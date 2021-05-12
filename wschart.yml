@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  wschart:
+    image: ${IMAGE}
+    build:
+      context: .
+      args:
+        PORT: 8081
+        SERVICE: ${SERVICE}
+#    restart: always
+    volumes:
+      - ./app.jar:/app/app.jar
+      - ./wschart-entrypoint.sh:/app/wschart-entrypoint.sh
+    ports:
+      - 8000:8000
+    networks:
+      - traefik_public
+    deploy:
+      mode: replicated
+      replicas: 3
+      placement:
+        constraints:
+          - node.platform.os == linux
+      #    - node.role == manager
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik_public
+        - traefik.constraint-label=traefik_public
+        - traefik.http.routers.wschart-http.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.wschart-http.entrypoints=http
+        #- traefik.http.routers.wschart-http.middlewares=https-redirect
+        - traefik.http.routers.wschart-https.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.wschart-https.entrypoints=https
+        - traefik.http.routers.wschart-https.tls=true
+        - traefik.http.routers.wschart-https.tls.certresolver=le
+        - traefik.http.services.wschart.loadbalancer.server.port=8081
+networks:
+  traefik_public:
+    external: true
