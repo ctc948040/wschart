@@ -1,15 +1,10 @@
 package com.chart.websocket.schedule;
 
-import com.chart.websocket.OutputMessage;
-import com.github.javafaker.Faker;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.util.Date;
+import com.github.javafaker.Faker;
 
 @Service
 public class ReactiveScheduledPushMessages implements InitializingBean {
