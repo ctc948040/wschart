@@ -1,7 +1,6 @@
 bin/
 .settings/
 target/
-.classlpath
 .project
 pom.xml.tag
 pom.xml.releaseBackup
@@ -14,3 +13,4 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 #.mvn/wrapper/maven-wrapper.jar
 #.mvn/
+/.classpath
