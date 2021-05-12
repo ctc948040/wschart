@@ -17,6 +17,7 @@ docker-compose -f ./${SERVICE}.yml push
 
 echo "[build & push success]------------------------------------"
 
+
 for node in $(docker-machine ls -q --filter state=Running)
 do
   echo "$node"
