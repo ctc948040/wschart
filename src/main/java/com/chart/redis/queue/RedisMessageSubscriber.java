@@ -1,7 +1,5 @@
 package com.chart.redis.queue;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,8 +18,6 @@ import org.springframework.stereotype.Service;
 import com.chart.websocket.OutputMessage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import SpringBootApp;
 
 @Service
 public class RedisMessageSubscriber implements MessageListener {
