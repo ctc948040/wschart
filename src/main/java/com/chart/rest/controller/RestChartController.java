@@ -25,7 +25,7 @@ public class RestChartController {
 	
 	@GetMapping("/")
 	String hello() {
-		return "helloWorld";
+		return "helloWorld1";
 	}
 	
 	@GetMapping("/IndexPrices")
