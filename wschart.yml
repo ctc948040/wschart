@@ -10,7 +10,7 @@ services:
         SERVICE: ${SERVICE}
 #    restart: always
     volumes:
-      - ./target/*.jar:/app/app.jar
+      - ./target/websocket_chart-0.0.1-SNAPSHOT.jar:/app/app.jar
       - ./wschart-entrypoint.sh:/app/wschart-entrypoint.sh
     ports:
       - 8000:8000
@@ -18,7 +18,7 @@ services:
       - traefik_public
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       placement:
         constraints:
           - node.platform.os == linux

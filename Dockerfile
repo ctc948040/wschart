@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 ENV HOME=/app
-ARG PORT=80
+ARG PORT=8081
 ARG SERVICE=wschart
 ENV PORT=${PORT}
 ENV SERVICE="${SERVICE}"
