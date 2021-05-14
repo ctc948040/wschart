@@ -18,7 +18,7 @@ services:
       - traefik_public
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
       placement:
         constraints:
           - node.platform.os == linux

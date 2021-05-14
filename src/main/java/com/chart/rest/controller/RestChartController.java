@@ -1,5 +1,7 @@
 package com.chart.rest.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +27,15 @@ public class RestChartController {
 	
 	@GetMapping("/")
 	String hello() {
-		return "helloWorld1";
+		try {
+			String ip = InetAddress.getLocalHost().getHostAddress();
+			String hostname = InetAddress.getLocalHost().getHostName();
+			return "[ip:"+ip+", hostname:"+hostname+"] helloWorld1";
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			return e.getMessage();
+		}		
+		
 	}
 	
 	@GetMapping("/IndexPrices")
