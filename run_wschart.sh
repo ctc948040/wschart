@@ -7,7 +7,7 @@ path=${PWD}
 cd "${PWD}/${SERVICE}"
 echo "${PWD}"
 
-#./mvnw clean package -DskipTests
+./mvnw clean package -DskipTests
 
 #cp ${PWD}/target/*.jar ${path}/${SERVICE}/app.jar
 
