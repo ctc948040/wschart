@@ -10,15 +10,15 @@ echo "${PWD}"
 ./mvnw clean package -DskipTests
 
 docker-compose -f ./${SERVICE}.yml build
-#docker-compose -f ./${SERVICE}.yml push
+docker-compose -f ./${SERVICE}.yml push
 #
-#echo "[build & push success]------------------------------------!!!"
+echo "[build & push success]------------------------------------!!!"
 #
-#for node in $(docker-machine ls -q --filter state=Running)
-#do
-#  echo "$node"
-#  echo "$(docker-machine ssh $node "docker pull ${IMAGE}")"
-#done
+for node in $(docker-machine ls -q --filter state=Running)
+do
+  echo "$node"
+  echo "$(docker-machine ssh $node "docker pull ${IMAGE}")"
+done
 
 docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
 
