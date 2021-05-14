@@ -19,7 +19,7 @@ do
   echo "$node"
   echo "$(docker-machine ssh $node "docker pull ${IMAGE}")"
 done
-
+docker stack rm ${SERVICE}
 docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
 
 #cd ${path}
