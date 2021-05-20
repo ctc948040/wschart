@@ -23,7 +23,7 @@ done
 #docker stack rm ${SERVICE}
 docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
 
-sleep 30
+sleep 60
 
 for node in $(docker-machine ls -q --filter state=Running)
 do
