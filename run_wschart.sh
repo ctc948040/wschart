@@ -23,4 +23,10 @@ done
 #docker stack rm ${SERVICE}
 docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
 
+sleep 10
+
+docker container prune -f
+
+docker image prune -a -f
+
 #cd ${path}
