@@ -15,20 +15,20 @@ docker-compose -f ./${SERVICE}.yml push
 #
 echo "[build & push success]------------------------------------!!!"
 #
-#for node in $(docker-machine ls -q --filter state=Running)
-#do
-#  echo "$node"
-#  echo "$(docker-machine ssh $node "docker pull ${IMAGE}")"
-#done
-##docker stack rm ${SERVICE}
-#docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
-#
-#sleep 60
-#
-#for node in $(docker-machine ls -q --filter state=Running)
-#do
-#  echo "$node"
-#  echo "$(docker-machine ssh $node "docker container prune -f;docker image prune -a -f;")"
-#done
+for node in $(docker-machine ls -q --filter state=Running)
+do
+  echo "$node"
+  echo "$(docker-machine ssh $node "docker pull ${IMAGE}")"
+done
+#docker stack rm ${SERVICE}
+docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
+
+sleep 60
+
+for node in $(docker-machine ls -q --filter state=Running)
+do
+  echo "$node"
+  echo "$(docker-machine ssh $node "docker container prune -f;docker image prune -a -f;")"
+done
 
 #cd ${path}
