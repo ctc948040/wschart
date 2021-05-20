@@ -25,8 +25,10 @@ docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
 
 sleep 30
 
-docker container prune -f
-
-docker image prune -a -f
+for node in $(docker-machine ls -q --filter state=Running)
+do
+  echo "$node"
+  echo "$(docker-machine ssh $node "docker container prune -f;docker image prune -a -f;")"
+done
 
 #cd ${path}
