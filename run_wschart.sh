@@ -1,15 +1,16 @@
 export SERVICE=wschart
 export DOMAIN=${SERVICE}.ddns.net
-export IMAGE=registry.ddns.net:5000/wschart:latest
+export IMAGE=registry.ddns.net:5000/wschart:$(git rev-parse --short HEAD)
 #export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
 path=${PWD}
 #echo "path=${path}"
 #cd "${PWD}/${SERVICE}"
 echo "${PWD}"
 
-./mvnw clean package -DskipTests
+#./mvnw clean package -DskipTests
 
-docker-compose -f ./${SERVICE}.yml build
+DOCKER_BUILDKIT=1 docker build -t ${IMAGE} .
+#docker-compose -f ./${SERVICE}.yml build
 docker-compose -f ./${SERVICE}.yml push
 #
 echo "[build & push success]------------------------------------!!!"
@@ -19,7 +20,7 @@ do
   echo "$node"
   echo "$(docker-machine ssh $node "docker pull ${IMAGE}")"
 done
-docker stack rm ${SERVICE}
+#docker stack rm ${SERVICE}
 docker stack deploy -c ./${SERVICE}.yml ${SERVICE}
 
 #cd ${path}
