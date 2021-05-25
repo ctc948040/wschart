@@ -30,7 +30,7 @@ public class RestChartController {
 		try {
 			String ip = InetAddress.getLocalHost().getHostAddress();
 			String hostname = InetAddress.getLocalHost().getHostName();
-			return "[ip:"+ip+", hostname:"+hostname+"] helloWorld07";
+			return "[ip:"+ip+", hostname:"+hostname+"] helloWorld08";
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			return e.getMessage();

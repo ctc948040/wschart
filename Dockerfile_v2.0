@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:experimental
+FROM openjdk:16-alpine3.13 as base
+WORKDIR /workspace/app
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN --mount=type=cache,target=/root/.m2 ./mvnw dependency:go-offline
+COPY src ./src
+
+FROM base as test
+RUN --mount=type=cache,target=/root/.m2 ./mvnw test
+
+FROM base as dev
+CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.profiles=dev", "-Dspring-boot.run.jvmArguments='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8000'"]
+
+FROM base as build
+RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests
+
+FROM openjdk:11-jre-slim as prd
+
+ARG DEPENDENCY=/workspace/app/target
+ENV HOME=/app
+ARG PORT=8081
+ARG SERVICE=wschart
+ENV PORT=${PORT}
+ENV SERVICE="${SERVICE}"
+WORKDIR ${HOME}
+
+COPY --from=build ${DEPENDENCY}/*.jar ./app.jar
+
+EXPOSE ${PORT}/tcp
+EXPOSE 8000/tcp
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "./app.jar"]
