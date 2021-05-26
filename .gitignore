@@ -13,4 +13,6 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 #.mvn/wrapper/maven-wrapper.jar
 #.mvn/
-.classpath.vault_pass
+.classpath
+.vault_pass
+
